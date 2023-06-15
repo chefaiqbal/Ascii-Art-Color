@@ -7,8 +7,8 @@ import (
 	"strings"
 )
 
-func AsciiPrint(data string, font string) {
-	fmt.Println(data)
+func AsciiPrint(data string, font string, color string) {
+	fmt.Println(data, color)
 	prev := 'a'
 	severallines := false
 	nline := 0
@@ -32,7 +32,13 @@ func AsciiPrint(data string, font string) {
 				for _, letter := range word {
 					res += GetLine(2+int(letter-' ')*9+i, font)
 				}
-				fmt.Println(res)
+
+				if color != "defult" {
+					fmt.Print(GetColor(color), res, GetColor("reset"))
+					fmt.Println()
+				} else {
+					fmt.Println(res)
+				}
 				res = ""
 			}
 		}
@@ -41,13 +47,14 @@ func AsciiPrint(data string, font string) {
 			for _, letter := range data {
 				res += GetLine(2+(int(letter)-32)*9+i, font)
 			}
-			fmt.Println(res)
+			fmt.Print(GetColor(color), res, GetColor("reset"))
+			fmt.Println()
 			res = ""
 		}
 	}
 }
 
-//getting the line data 
+// getting the line data
 func GetLine(num int, font string) string {
 	f, _ := os.Open("../fonts/" + font)
 	defer f.Close()
@@ -64,4 +71,19 @@ func GetLine(num int, font string) string {
 	}
 
 	return ""
+}
+
+func GetColor(color string) string {
+	codes := map[string]string{
+		"black":   "\u001b[30m",
+		"red":     "\u001b[31m",
+		"green":   "\u001b[32m",
+		"yellow":  "\u001b[33m",
+		"blue":    "\u001b[34m",
+		"magenta": "\u001b[35m",
+		"cyan":    "\u001b[36m",
+		"white":   "\u001b[37m",
+		"reset":   "\u001b[0m",
+	}
+	return codes[color]
 }

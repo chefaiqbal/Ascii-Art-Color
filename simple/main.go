@@ -8,16 +8,17 @@ import (
 )
 
 func main() {
+	color := "defult"
 	args := os.Args[1:]
 	if len(args) <= 0 {
 		fmt.Println("Please provide enough arguments !!")
 		return
 	}
-	data, font := ascii.HandleInput(args)
+	data, font, _ := ascii.HandleInput(args)
 	_, arerr := os.Stat("../fonts/" + font)
 	if arerr != nil {
 		fmt.Println("Error: ASCII-ART font file not found !")
 		return
 	}
-	ascii.AsciiPrint(data, font)
+	ascii.AsciiPrint(data, font, color)
 }
