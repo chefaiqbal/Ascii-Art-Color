@@ -7,7 +7,7 @@ import (
 	"strings"
 )
 
-func AsciiPrint(data string, font string, color string) {
+func AsciiPrint(data string, font string, color string, toBeColored string) {
 	fmt.Println(data, color)
 	prev := 'a'
 	severallines := false
@@ -24,32 +24,66 @@ func AsciiPrint(data string, font string, color string) {
 	if severallines {
 		args := strings.Split(data, "\\n")
 		for _, word := range args {
-			if word == "" {
-				fmt.Println()
-				continue
-			}
-			for i := 0; i < 8; i++ {
-				for _, letter := range word {
-					res += GetLine(2+int(letter-' ')*9+i, font)
-				}
-
-				if color != "defult" {
-					fmt.Print(GetColor(color), res, GetColor("reset"))
+			if word == toBeColored {
+				if word == "" {
 					fmt.Println()
-				} else {
-					fmt.Println(res)
+					continue
 				}
-				res = ""
+				for i := 0; i < 8; i++ {
+					for _, letter := range word {
+						res += GetLine(2+int(letter-' ')*9+i, font)
+					}
+
+					if color != "defult" {
+						fmt.Print(GetColor(color), res, GetColor("reset"))
+						fmt.Println()
+					} else {
+						fmt.Println(res)
+					}
+					res = ""
+				}
+			} else {
+				if word == "" {
+					fmt.Println()
+					continue
+				}
+				for i := 0; i < 8; i++ {
+					for _, letter := range word {
+						res += GetLine(2+int(letter-' ')*9+i, font)
+					}
+
+					if color != "defult" {
+						fmt.Print(res)
+						fmt.Println()
+					} else {
+						fmt.Println(res)
+					}
+					res = ""
+				}
 			}
 		}
 	} else {
-		for i := 0; i < 8; i++ {
-			for _, letter := range data {
-				res += GetLine(2+(int(letter)-32)*9+i, font)
+		sdata := strings.Split(data, " ")
+		for _, word := range sdata {
+			if word == toBeColored {
+				for i := 0; i < 8; i++ {
+					for _, letter := range data {
+						res += GetLine(2+(int(letter)-32)*9+i, font)
+					}
+					fmt.Print(GetColor(color), res, GetColor("reset"))
+					fmt.Println()
+					res = ""
+				}
+			} else {
+				for i := 0; i < 8; i++ {
+					for _, letter := range data {
+						res += GetLine(2+(int(letter)-32)*9+i, font)
+					}
+					fmt.Print(res)
+					fmt.Println()
+					res = ""
+				}
 			}
-			fmt.Print(GetColor(color), res, GetColor("reset"))
-			fmt.Println()
-			res = ""
 		}
 	}
 }

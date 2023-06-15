@@ -13,11 +13,11 @@ func main() {
 		fmt.Println("Please provide enough arguments !!")
 		return
 	}
-	data, font, color := ascii.HandleInput(args)
+	data, font, color, toBeColored := ascii.HandleInput(args)
 	_, arerr := os.Stat("../fonts/" + font)
 	if arerr != nil {
 		fmt.Println("Error: ASCII-ART font file not found !")
 		return
 	}
-	ascii.AsciiPrint(data, font,color)
+	ascii.AsciiPrint(data, font, color, toBeColored)
 }
