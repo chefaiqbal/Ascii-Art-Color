@@ -1,6 +1,9 @@
 package ascii
 
-import "strings"
+import (
+	"fmt"
+	"strings"
+)
 
 func HandleInput(data []string) (string, string, string, string) {
 	str := ""
@@ -27,25 +30,32 @@ func HandleInput(data []string) (string, string, string, string) {
 			str += strin + " "
 		}
 	}
+	fmt.Printf("Data	:%v\nFont	:%v\nColor	:%v\nToBeColo:%v\n", str, font, color, toBeColored)
 	return str, font, color, toBeColored
 }
 
-func FindSubstring(strings []string) string {
-	for _, substr := range strings {
-		found := false
-		for _, str := range strings {
-			if str != substr && containsString(str, substr) {
+func FindSubstring(data []string) string {
+	prev := ""
+	found := false
+	fmt.Println(data, len(data))
+
+	for _, str := range data {
+		if str[:2] != "--" {
+			if strings.Contains(str, prev) && !found {
 				found = true
-				break
+				fmt.Println(prev)
+				return prev
+			} else if found {
+				prev = str
+				found = false
 			}
 		}
-		if !found {
-			return substr
-		}
 	}
-	return "-"
-}
-
-func containsString(str, substr string) bool {
-	return strings.Contains(str, substr)
+	if found {
+		fmt.Println(prev)
+		return prev
+	} else {
+		fmt.Println(prev)
+		return ""
+	}
 }
