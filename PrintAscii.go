@@ -5,6 +5,21 @@ import (
 	"strings"
 )
 
+func GetIndex(data string, subdata string) int {
+	count := 0
+	for i := 0; i < len(data); i++ {
+		if strings.Contains(data, subdata) {
+			for _, char := range data {
+				count++
+				if char == rune(subdata[0]) {
+					return count
+				}
+			}
+		}
+	}
+	return count
+}
+
 func AsciiPrint(data string, font string, color string, toBeColored string) {
 	prev := 'a'
 	severallines := false
@@ -47,4 +62,7 @@ func AsciiPrint(data string, font string, color string, toBeColored string) {
 			res = ""
 		}
 	}
+}
+
+func printTheAscii(word string) {
 }
