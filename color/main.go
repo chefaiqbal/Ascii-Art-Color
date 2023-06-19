@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 
-	ascii "simple/main.go"
+	"ascii"
 )
 
 func main() {
@@ -19,5 +19,5 @@ func main() {
 		fmt.Println("Error: ASCII-ART font file not found !")
 		return
 	}
-	ascii.AsciiColorPrint(data, font, color, toBeColored)
+	ascii.AsciiPrint(data, font, color, toBeColored)
 }

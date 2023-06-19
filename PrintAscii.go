@@ -5,7 +5,7 @@ import (
 	"strings"
 )
 
-func AsciiNPrint(data string, font string, color string, toBeColored string) {
+func AsciiPrint(data string, font string, color string, toBeColored string) {
 	prev := 'a'
 	severallines := false
 	nline := 0
@@ -39,7 +39,11 @@ func AsciiNPrint(data string, font string, color string, toBeColored string) {
 			for _, letter := range data {
 				res += GetLine(2+(int(letter)-32)*9+i, font)
 			}
-			fmt.Println(res)
+			if color != "" {
+				fmt.Println(GetColor(color), res, GetColor("defult"))
+			} else {
+				fmt.Println(res)
+			}
 			res = ""
 		}
 	}

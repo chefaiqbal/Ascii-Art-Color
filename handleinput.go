@@ -2,18 +2,23 @@ package ascii
 
 import (
 	"fmt"
+	"strings"
 )
 
-func findSmallestString(strings []string) string {
-	smallest := strings[0] // Assume the first string is the smallest
+func FindSubString(data []string) string {
+	smallest := data[0] // Assume the first string is the smallest
 
-	for _, str := range strings {
+	for _, str := range data {
 		if len(str) < len(smallest) {
 			smallest = str
 		}
 	}
-
-	return smallest
+	for _, str := range data {
+		if str != smallest && strings.Contains(str, smallest) {
+			return smallest
+		}
+	}
+	return ""
 }
 
 func HandleInput(data []string) (string, string, string, string) {
@@ -25,7 +30,7 @@ func HandleInput(data []string) (string, string, string, string) {
 		str = data[0]
 		return str, font, color, toBeColored
 	} else {
-		toBeColored = findSmallestString(data)
+		toBeColored = FindSubString(data)
 		for _, strin := range data {
 			if strin == "shadow" || strin == "thinkertoy" || strin == "standard" {
 				font = strin + ".txt"

@@ -1,3 +1,3 @@
-module simple/main.go
+module ascii
 
 go 1.18
