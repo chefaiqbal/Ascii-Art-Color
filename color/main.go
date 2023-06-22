@@ -10,7 +10,7 @@ import (
 func main() {
 	args := os.Args[1:]
 	if len(args) <= 0 {
-		fmt.Println("Please provide enough arguments !!")
+		fmt.Println("Error: No enough arguments!!")
 		return
 	}
 	data, font, color, toBeColored := ascii.HandleInput(args)

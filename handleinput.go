@@ -46,7 +46,6 @@ func HandleInput(data []string) (string, string, string, string) {
 			str += strin + " "
 		}
 	}
-	fmt.Printf("Print	:%s\nColor	:%s\nFont	:%s\nToColor	:%s", str, color, font, toBeColored)
-	fmt.Println()
+	fmt.Printf("Print	:%s\nColor	:%s\nFont	:%s\nToColor	:%s\n", str, color, font, toBeColored)
 	return str, font, color, toBeColored
 }

@@ -2,43 +2,46 @@ package main
 
 import (
 	"fmt"
-	"io/ioutil"
 	"strings"
 )
 
-func PrintASCIIArt(character string) {
-	// Read the contents of the thinkertoy.txt file
-	content, err := ioutil.ReadFile("../fonts/thinkertoy.txt")
-	if err != nil {
-		fmt.Println("Error reading file:", err)
-		return
-	}
-
-	// Split the content into lines
-	lines := strings.Split(string(content), "\n")
-
-	// Create a map to store the character-to-ASCII-art mapping
-	charMap := make(map[string][]string)
-
-	// Iterate over the lines and populate the charMap dictionary
-	for i := 0; i < len(lines); i += 9 {
-		char := lines[i]
-		art := lines[i+1 : i+9]
-		charMap[char] = art
-	}
-
-	// Check if the character exists in the charMap
-	art, exists := charMap[character]
-	if exists {
-		// Print the ASCII art for the character
-		fmt.Println(strings.Join(art, "\n"))
+func ind(data string, subdata string) int {
+	if strings.Contains(data, subdata) {
+		index := strings.Index(data, subdata)
+		return index
 	} else {
-		fmt.Println("Character not found in the ASCII art database.")
+		return -1
 	}
+	// count := 0
+	// for i := 0; i < len(data); i++ {
+	// 	if strings.Contains(data, subdata) {
+	// 		for _, char := range data {
+	// 			count++
+	// 			if char == rune(subdata[0]) {
+	// 				return count - 1
+	// 			}
+	// 		}
+	// 	}
+	// }
+	// return count
+}
+
+func arr(s1 string, s2 string) {
+	index := ind(s1, s2)
+	fmt.Println(index)
+	fmt.Println(s1)
+	for i := 0; i < len(s1); i++ {
+		if i >= index && i < index+len(s2) {
+			fmt.Print("^")
+		} else {
+			fmt.Print(" ")
+		}
+	}
+	fmt.Println()
 }
 
 func main() {
-	PrintASCIIArt("A") // Prints ASCII art for the character "A"
-	PrintASCIIArt("B") // Prints ASCII art for the character "B"
-	PrintASCIIArt("$") // Prints "Character not found in the ASCII art database."
+	str := "Hellow World!"
+	substr := "ld"
+	arr(str, substr)
 }
