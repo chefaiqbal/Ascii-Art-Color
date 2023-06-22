@@ -59,7 +59,7 @@ func AsciiPrint(data string, font string, color string, toBeColored string) {
 	} else {
 		for i := 0; i < 8; i++ {
 			for x, letter := range data {
-				if x >= index && x < index+len(toBeColored) {
+				if x >= index && x < index+len(toBeColored) || color != "" && toBeColored==""{
 					res += GetColor(color) + GetLine(2+(int(letter)-32)*9+i, font) + GetColor("reset")
 				} else {
 					res += GetLine(2+(int(letter)-32)*9+i, font)
