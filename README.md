@@ -1,41 +1,55 @@
-# ASCII Art
+# ASCII Printer
 
-ASCII Art is a program that generates graphic representations of input strings using ASCII characters.
+A command-line tool for printing ASCII art with customizable fonts and colors.
 
 ## Usage
 
-1. Ensure you have Go installed on your machine.
-2. Clone this repository:
+go run . [OPTIONS] [STRING...]
 
-```bash
-git clone https://github.com/your-username/ascii-art.git
-Navigate to the project directory:
-bash
-Copy code
-cd ascii-art
-Run the program with an input string:
-bash
-Copy code
-go run . "Hello, World!"
-The program will generate the ASCII art representation of the input string and display it in the console.
+The tool accepts the following options:
 
-Features
-Supports input with numbers, letters, spaces, special characters, and line breaks.
-Each character has a height of 8 lines.
-Characters are separated by a new line (\n).
-Uses a standard.txt file to store the ASCII representations of characters.
-Customization
-If you want to customize the ASCII characters or add more characters, you can edit the standard.txt file. Each character's ASCII representation should be separated by an empty line. Ensure the width and height of each character match the constant values defined in the code.
+- `--color=<COLOR>`: Specify the color for the ASCII art. Available colors: black, red, green, yellow, blue, magenta, cyan, white. Default: default color.
+- `--font=<FONT>`: Specify the font for the ASCII art. Available fonts: shadow, thinkertoy, standard. Default: standard font.
 
-Example
-Here is an example of generating ASCII art for the input string "Hello, World!":
+You can pass one or more strings as arguments to print them as ASCII art.
 
- _    _          _   _                    __          __                 _       _   _  
-| |  | |        | | | |                   \ \        / /                | |     | | | | 
-| |__| |   ___  | | | |   ___              \ \  /\  / /    ___    _ __  | |   __| | | | 
-|  __  |  / _ \ | | | |  / _ \              \ \/  \/ /    / _ \  | '__| | |  / _` | | | 
-| |  | | |  __/ | | | | | (_) |  _           \  /\  /    | (_) | | |    | | | (_| | |_| 
-|_|  |_|  \___| |_| |_|  \___/  ( )           \/  \/      \___/  |_|    |_|  \__,_| (_) 
-                                |/                                                      
+## Examples
 
-                                
+Print a single string using the default settings:
+
+go run . "Hello World"
+
+
+Output:
+ _    _          _   _                __          __                 _       _  
+| |  | |        | | | |               \ \        / /                | |     | | 
+| |__| |   ___  | | | |   ___          \ \  /\  / /    ___    _ __  | |   __| | 
+|  __  |  / _ \ | | | |  / _ \          \ \/  \/ /    / _ \  | '__| | |  / _` | 
+| |  | | |  __/ | | | | | (_) |          \  /\  /    | (_) | | |    | | | (_| | 
+|_|  |_|  \___| |_| |_|  \___/            \/  \/      \___/  |_|    |_|  \__,_| 
+                                                                                
+
+
+Print a string with a specific color:
+
+go run . --color=green "Hello World"
+
+Output:
+
+[32m _    _  [0m[32m       [0m[32m _  [0m[32m _  [0m[32m        [0m[32m      [0m[32m__          __ [0m[32m        [0m[32m       [0m[32m _  [0m[32m     _  [0m[32m      [0m
+[32m| |  | | [0m[32m       [0m[32m| | [0m[32m| | [0m[32m        [0m[32m      [0m[32m\ \        / / [0m[32m        [0m[32m       [0m[32m| | [0m[32m    | | [0m[32m      [0m
+[32m| |__| | [0m[32m  ___  [0m[32m| | [0m[32m| | [0m[32m  ___   [0m[32m      [0m[32m \ \  /\  / /  [0m[32m  ___   [0m[32m _ __  [0m[32m| | [0m[32m  __| | [0m[32m      [0m
+[32m|  __  | [0m[32m / _ \ [0m[32m| | [0m[32m| | [0m[32m / _ \  [0m[32m      [0m[32m  \ \/  \/ /   [0m[32m / _ \  [0m[32m| '__| [0m[32m| | [0m[32m / _` | [0m[32m      [0m
+[32m| |  | | [0m[32m|  __/ [0m[32m| | [0m[32m| | [0m[32m| (_) | [0m[32m      [0m[32m   \  /\  /    [0m[32m| (_) | [0m[32m| |    [0m[32m| | [0m[32m| (_| | [0m[32m      [0m
+[32m|_|  |_| [0m[32m \___| [0m[32m|_| [0m[32m|_| [0m[32m \___/  [0m[32m      [0m[32m    \/  \/     [0m[32m \___/  [0m[32m|_|    [0m[32m|_| [0m[32m \__,_| [0m[32m      [0m
+[32m         [0m[32m       [0m[32m    [0m[32m    [0m[32m        [0m[32m      [0m[32m               [0m[32m        [0m[32m       [0m[32m    [0m[32m        [0m[32m      [0m
+[32m         [0m[32m       [0m[32m    [0m[32m    [0m[32m        [0m[32m      [0m[32m               [0m[32m        [0m[32m       [0m[32m    [0m[32m        [0m[32m      [0m
+   
+## Fonts
+
+The tool supports the following fonts:
+
+- `shadow`: Shadow font style.
+- `thinkertoy`: Thinkertoy font style.
+- `standard`: Standard font style (default).
+
