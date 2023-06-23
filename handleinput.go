@@ -32,20 +32,30 @@ func HandleInput(data []string) (string, string, string, string) {
 	} else {
 		toBeColored = FindSubString(data)
 		for _, strin := range data {
+			if strin == toBeColored {
+				continue
+			}
+			if strin[:2] == "--" {
+				if len(strin) > 8 && strin[:8] == "--color=" {
+					color = strin[8:]
+					ok := IsColorSupported(color)
+					if !ok {
+						fmt.Println("Error: Coloris not supported!\nSuported colors are:\n-black	-red\n-green	-yellow\n-blue	-magenta\n-cyan	-white\n-orange	-reset")
+						return "", "", "", ""
+					} else {
+						continue
+					}
+				} else {
+					return "", "", "", ""
+				}
+			}
 			if strin == "shadow" || strin == "thinkertoy" || strin == "standard" {
 				font = strin + ".txt"
 				continue
 			}
-			if strin[:2] == "--" && strin[:8] == "--color=" {
-				color = strin[8:]
-				continue
-			}
-			if strin == toBeColored {
-				continue
-			}
+
 			str += strin + " "
 		}
 	}
-	fmt.Printf("Print	:%s\nColor	:%s\nFont	:%s\nToColor	:%s\n", str, color, font, toBeColored)
 	return str, font, color, toBeColored
 }

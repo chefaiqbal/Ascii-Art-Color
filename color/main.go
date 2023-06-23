@@ -14,10 +14,15 @@ func main() {
 		return
 	}
 	data, font, color, toBeColored := ascii.HandleInput(args)
-	_, arerr := os.Stat("../fonts/" + font)
-	if arerr != nil {
-		fmt.Println("Error: ASCII-ART font file not found !")
+	if data == "" && font == "" && color == "" && toBeColored == "" {
+		fmt.Println("Usage: go run . [OPTION] [STRING]\nEX: go run . --color=<color> <letters to be colored> \"something\"")
 		return
+	} else {
+		_, arerr := os.Stat("../fonts/" + font)
+		if arerr != nil {
+			fmt.Println("Error: ASCII-ART font file not found !")
+			return
+		}
+		ascii.AsciiPrint(data, font, color, toBeColored)
 	}
-	ascii.AsciiPrint(data, font, color, toBeColored)
 }
